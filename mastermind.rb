@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'game'
+
 # Plan:
 #   ::Player:
 #     ::Human
@@ -22,3 +24,5 @@
 #         if @guesses.any == @code
 #           win
 #       #game_over?
+
+Game.new.setup_game
