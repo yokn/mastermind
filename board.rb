@@ -5,7 +5,12 @@ class Board
     @guesses = 'placeholder'
   end
 
-  def display_board; end
+  def display_board
+    puts 'displaying board'
+    puts '----------------'
+    puts '                '
+    puts '----------------'
+  end
 
   def full?; end
 end

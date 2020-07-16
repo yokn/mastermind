@@ -28,27 +28,30 @@ class Game
   def play_game
     until game_over?
       get_guess
-      p 'got guess'
+      puts 'got guess'
       @board.display_board
       game_over?
     end
+    puts 'Game over!'
   end
 
   def get_guess
+    @guess = nil
     if @player_is_gm
-      @ai_player.get_ai_guess
-      p 'placeholder'
+      @guess = @ai_player.get_ai_guess
+      puts 'placeholder'
     else
-      @human_player.get_human_guess
+      @guess = @human_player.get_human_guess.split
     end
+    p @guess
   end
 
-  def check_win
-    puts 'checking win'
-    # win if @guesses.any == @code
+  def check_guess(guess)
+    puts 'checking if guess was correct'
+    guess == @ai_player.code
   end
 
   def game_over?
-    check_win || @board.full?
+    check_guess(@guess) || @board.full? unless @guess.nil?
   end
 end
