@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class Board
   def initialize
-    @guesses = 
+    @guesses = 'placeholder'
   end
-  def is_full?
-  end
+
+  def display_board; end
+
+  def full?; end
 end
