@@ -5,20 +5,18 @@ class Player
 
   def get_random_color
     @rand = rand
-    if @rand.between?(0, 0.16)
+    if @rand.between?(0, 0.17)
       'yellow'
-    elsif @rand.between?(0.16, 0.32)
+    elsif @rand.between?(0.17, 0.33)
       'blue'
-    elsif @rand.between?(0.32, 0.48)
+    elsif @rand.between?(0.33, 0.49)
       'purple'
-    elsif @rand.between?(0.48, 0.64)
+    elsif @rand.between?(0.49, 0.65)
       'red'
-    elsif @rand.between?(0.64, 0.80)
+    elsif @rand.between?(0.65, 0.81)
       'green'
-    elsif @rand.between?(0.80, 1)
+    else
       'cyan'
-      # else
-      #   "can't get color"
     end
   end
 end

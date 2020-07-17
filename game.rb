@@ -30,7 +30,7 @@ class Game
       get_guess
       puts 'got guess'
       @board.display_board
-      game_over?
+      # game_over?
     end
     puts 'Game over!'
   end
@@ -47,8 +47,16 @@ class Game
   end
 
   def check_guess(guess)
+    @correct_color_and_position = 0
     puts 'checking if guess was correct'
-    guess == @ai_player.code
+    guess.each_with_index do |_value, index|
+      if guess[index] == @ai_player.code[index]
+        @correct_color_and_position += 1
+        p 'placeholder111111111111111111'
+      end
+    end
+    puts "Correct color and position: #{@correct_color_and_position}"
+    true if @correct_color_and_position == 4
   end
 
   def game_over?

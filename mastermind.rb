@@ -25,4 +25,7 @@ require_relative 'game'
 #           win
 #       #game_over?
 
+# TODO: Give feedback on the guesses
+# TODO: Convert guesses to hash (to keep history for #display_board, board.full? and ai purposes)
+
 Game.new.setup_game
