@@ -19,7 +19,7 @@ class Game
   end
 
   def determine_gm
-    puts 'Do you want be to the game master? (true/false)'
+    puts 'Do you want be the game master? (true/false)'
     @player_is_gm = gets.chomp
     @player_is_gm = @player_is_gm == 'true'
     @ai_player.create_code unless @player_is_gm
@@ -48,14 +48,16 @@ class Game
 
   def check_guess(guess)
     @correct_color_and_position = 0
-    puts 'checking if guess was correct'
-    guess.each_with_index do |_value, index|
-      if guess[index] == @ai_player.code[index]
+    @wrong_position = 0
+    @ai_player.code.each_with_index do |value, index|
+      if value == guess[index]
         @correct_color_and_position += 1
-        p 'placeholder111111111111111111'
+      elsif guess.include?(value)
+        @wrong_position += 1
       end
     end
     puts "Correct color and position: #{@correct_color_and_position}"
+    puts "Wrong position: #{@wrong_position}"
     true if @correct_color_and_position == 4
   end
 
