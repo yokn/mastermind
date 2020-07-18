@@ -66,6 +66,7 @@ class Game
 
   def check_perfect_match(value, guess, index)
     @found_match = false
+    puts "value: #{value} guess: #{guess} index: #{index}"
     if guess[index] == value
       @perfect_match += 1
       puts "Found perfect match: #{value} at #{index}"
@@ -77,14 +78,18 @@ class Game
 
   # no duplicates... i think?
   # https://stackoverflow.com/a/2005808
-  def check_color_match(_value, guess, index)
+  def check_color_match(value, guess, index)
+    # p value
+    # p guess
+    # p index
+    puts "value: #{value} guess: #{guess} index: #{index}"
     4.times do |s|
-      next unless s != index && guess[index] == @code[s] && !@flag[s]
+      next unless s != index && guess[index] == @code[s] && !(@flag[s] == 'perfect' || @flag[index] == 'perfect')
 
       # guess.delete_at(guess.index(@code[s]))
-      @color_match += 1 unless @perfect_match == 3 # yeah...
+      @color_match += 1
       @flag[s] = 'color'
-      puts "Found color match: #{guess[index]} at #{s}"
+      puts "Found color match: #{value} at #{s}"
       break
     end
   end
