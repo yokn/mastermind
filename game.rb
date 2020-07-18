@@ -22,7 +22,8 @@ class Game
     puts 'Do you want be the game master? (true/false)'
     @player_is_gm = gets.chomp
     @player_is_gm = @player_is_gm == 'true'
-    @ai_player.create_code unless @player_is_gm
+    @@code = @player_is_gm ? @human_player.create_code : @ai_player.create_code
+    p @@code
   end
 
   def play_game
@@ -38,12 +39,11 @@ class Game
 
   def get_guess
     @guess = nil
-    if @player_is_gm
-      @guess = @ai_player.get_ai_guess
-      puts 'placeholder'
-    else
-      @guess = @human_player.get_human_guess.split
-    end
+    @guess = if @player_is_gm
+               @ai_player.get_ai_guess
+             else
+               @human_player.get_human_guess.split
+             end
     p @guess
   end
 
@@ -51,9 +51,11 @@ class Game
     @flag = []
     @perfect_match = 0
     @color_match = 0
-    @ai_player.code.each_with_index do |value, index|
+    p @@code
+    @@code.each_with_index do |value, index|
       check_color_match(value, guess, index) unless check_perfect_match(value, guess, index)
     end
+    p @flag
     puts "Perfect match: #{@perfect_match}"
     puts "Color match: #{@color_match}"
     true if @perfect_match == 4
@@ -63,23 +65,30 @@ class Game
     @found_match = false
     if guess[index] == value
       @perfect_match += 1
-      puts "Found perfect match: #{value}"
-      @flag[index] = 1
+      puts "Found perfect match: #{value} at #{index}"
+      @flag[index] = 'perfect'
       @found_match = true
     end
     @found_match
   end
 
+  # still duplicates... need to fix
   # https://stackoverflow.com/a/2005808
-  def check_color_match(value, guess, index)
-    guess.each_with_index do |inner_value, inner_index|
-      if inner_index != index && inner_value == value && !@flag[inner_index]
-        @color_match += 1
-        @flag[inner_index] = 1
-      end
+  def check_color_match(_value, guess, index)
+    4.times do |s|
+      next unless s != index && guess[index] == @@code[s] && !@flag[s]
+
+      @color_match += 1
+      @flag[s] = 'color'
+      puts "Found color match: #{guess[index]} at #{s}"
+      break
     end
   end
 
+  # def remove_duplicates
+  #   4.times do |x|
+  #     if @flag[x] = 1
+  # end
   def game_over?
     check_guess(@guess) || @board.full? unless @guess.nil?
   end

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class Player
-  def initialize; end
+  attr_reader :code
+  def initialize
+    @code = nil
+  end
 
   def get_random_color
     @rand = rand

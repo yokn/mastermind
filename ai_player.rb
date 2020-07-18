@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class AIPlayer < Player
-  attr_reader :code
   def initialize
-    @code = nil
+    @ai_guess = []
   end
 
   def create_code
@@ -11,15 +10,14 @@ class AIPlayer < Player
     4.times do |_x|
       @code.push(get_random_color)
     end
-    p @code
+    @code
   end
 
   def get_ai_guess
-    (1..4).each do |_i|
-      case rand
-      when 0.2
-        'yellow'
-      end
+    4.times do |_i|
+      @ai_guess.push(get_random_color)
+      p @ai_guess
     end
+    @ai_guess
   end
 end

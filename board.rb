@@ -15,7 +15,6 @@ class Board
 
   def display_board
     puts <<-HEREDOC
-
    #{@board_array[0]}
    #{@board_array[1]}
    #{@board_array[2]}
@@ -28,7 +27,6 @@ class Board
    #{@board_array[9]}
    #{@board_array[10]}
    #{@board_array[11]}
-
     HEREDOC
   end
 
