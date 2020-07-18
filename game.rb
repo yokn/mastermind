@@ -29,8 +29,9 @@ class Game
     until game_over?
       get_guess
       puts 'got guess'
+      @board.add_guess_to_board_array(@guess)
       @board.display_board
-      # game_over?
+      puts "Attempts left: #{12 - @board.guess_count}!"
     end
     puts 'Game over!'
   end
@@ -52,7 +53,6 @@ class Game
     @color_match = 0
     @ai_player.code.each_with_index do |value, index|
       check_color_match(value, guess, index) unless check_perfect_match(value, guess, index)
-      # remove_duplicate_matches
     end
     puts "Perfect match: #{@perfect_match}"
     puts "Color match: #{@color_match}"
@@ -79,10 +79,6 @@ class Game
       end
     end
   end
-
-  # def remove_duplicate_matches
-  #   @@abc = (@perfect_match > @color_match ? @color_match : @perfect_match) - @perfect_match
-  # end
 
   def game_over?
     check_guess(@guess) || @board.full? unless @guess.nil?
