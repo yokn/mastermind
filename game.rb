@@ -22,8 +22,9 @@ class Game
     puts 'Do you want be the game master? (true/false)'
     @player_is_gm = gets.chomp
     @player_is_gm = @player_is_gm == 'true'
-    @@code = @player_is_gm ? @human_player.create_code : @ai_player.create_code
-    p @@code
+    @code = @player_is_gm ? @human_player.create_code : @ai_player.create_code
+    # @code = %w[red cyan red red]
+    p @code
   end
 
   def play_game
@@ -51,9 +52,11 @@ class Game
     @flag = []
     @perfect_match = 0
     @color_match = 0
-    p @@code
-    @@code.each_with_index do |value, index|
-      check_color_match(value, guess, index) unless check_perfect_match(value, guess, index)
+    @code.each_with_index do |value, index|
+      check_perfect_match(value, guess, index)
+    end
+    @code.each_with_index do |value, index|
+      check_color_match(value, guess, index)
     end
     p @flag
     puts "Perfect match: #{@perfect_match}"
@@ -72,13 +75,14 @@ class Game
     @found_match
   end
 
-  # still duplicates... need to fix
+  # no duplicates... i think?
   # https://stackoverflow.com/a/2005808
   def check_color_match(_value, guess, index)
     4.times do |s|
-      next unless s != index && guess[index] == @@code[s] && !@flag[s]
+      next unless s != index && guess[index] == @code[s] && !@flag[s]
 
-      @color_match += 1
+      # guess.delete_at(guess.index(@code[s]))
+      @color_match += 1 unless @perfect_match == 3 # yeah...
       @flag[s] = 'color'
       puts "Found color match: #{guess[index]} at #{s}"
       break
