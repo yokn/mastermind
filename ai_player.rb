@@ -13,14 +13,14 @@ class AIPlayer < Player
     @code
   end
 
-  def get_ai_guess(perfect_match, color_match)
-    (4 - perfect_match + color_match).times do |_i|
+  def get_ai_guess(perfect_match, _color_match)
+    (4 - perfect_match).times do |_i|
       @ai_guess.pop
     end
-    (4 - perfect_match + color_match).times do |_i|
+    (4 - perfect_match).times do |_i|
       @ai_guess.push(get_random_color)
-      p @ai_guess
     end
+    # p @ai_guess
     @ai_guess
   end
 end

@@ -28,4 +28,5 @@ require_relative 'game'
 # TODO: Convert guesses to hash (to keep history for #display_board, board.full? and ai purposes)
 # TODO: Make AI better
 # TODO: Make board display nicer
+# TODO: Input validation
 Game.new.setup_game

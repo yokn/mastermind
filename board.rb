@@ -9,10 +9,8 @@ class Board
   end
 
   def add_guess_to_board_array(guess_to_be_added)
-    p @board_array
     @board_array[@guess_count] = guess_to_be_added
-    puts "added guess:#{guess_to_be_added} number: #{@guess_count} to board!"
-    p @board_array
+    # puts "added guess:#{guess_to_be_added} number: #{@guess_count} to board!"
     @guess_count += 1
   end
 
