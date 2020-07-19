@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class AIPlayer < Player
-  def initialize; end
+  def initialize
+    @ai_guess = []
+  end
 
   def create_code
     @code = []
@@ -11,9 +13,11 @@ class AIPlayer < Player
     @code
   end
 
-  def get_ai_guess
-    @ai_guess = []
-    4.times do |_i|
+  def get_ai_guess(perfect_match, color_match)
+    (4 - perfect_match + color_match).times do |_i|
+      @ai_guess.pop
+    end
+    (4 - perfect_match + color_match).times do |_i|
       @ai_guess.push(get_random_color)
       p @ai_guess
     end

@@ -10,6 +10,8 @@ class Game
     @board = Board.new
     @human_player = HumanPlayer.new
     @ai_player = AIPlayer.new
+    @perfect_match = 0
+    @color_match = 0
   end
 
   def setup_game
@@ -41,7 +43,7 @@ class Game
   def get_guess
     @guess = nil
     @guess = if @player_is_gm
-               @ai_player.get_ai_guess
+               @ai_player.get_ai_guess(@perfect_match, @color_match)
              else
                @human_player.get_human_guess.split
              end
