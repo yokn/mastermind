@@ -37,7 +37,16 @@ class Game
       @board.display_board
       puts "Attempts left: #{12 - @board.guess_count}!"
     end
-    puts 'Game over!'
+    determine_winner
+  end
+
+  def determine_winner
+    case @player_is_gm
+    when true
+      puts @perfect_match == 4 ? 'You lost!' : 'You won!'
+    when false
+      puts @perfect_match == 4 ? 'You won!' : 'You lost!'
+    end
   end
 
   def get_guess
@@ -78,7 +87,7 @@ class Game
     @found_match
   end
 
-  # https://stackoverflow.com/a/2005808
+  # adapted from https://stackoverflow.com/a/2005808
   def check_color_match(_value, guess, index)
     # puts "value: #{value} guess: #{guess} index: #{index}"
     4.times do |s|

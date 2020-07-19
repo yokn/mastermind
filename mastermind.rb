@@ -26,5 +26,6 @@ require_relative 'game'
 #       #game_over?
 
 # TODO: Convert guesses to hash (to keep history for #display_board, board.full? and ai purposes)
-# TODO: Make AI include previous color_match(s) in its next guess
+# TODO: Make AI better
+# TODO: Make board display nicer
 Game.new.setup_game
