@@ -3,13 +3,16 @@
 class Board
   attr_reader :guess_count
   def initialize
-    @guesses = 'placeholder'
+    # @guesses = {}
     @board_array = Array.new(12, '-       -        -        -       ')
     @guess_count = 0
   end
 
-  def add_guess_to_board_array(guess)
-    @board_array[@guess_count] = guess
+  def add_guess_to_board_array(guess_to_be_added)
+    p @board_array
+    @board_array[@guess_count] = guess_to_be_added
+    puts "added guess:#{guess_to_be_added} number: #{@guess_count} to board!"
+    p @board_array
     @guess_count += 1
   end
 

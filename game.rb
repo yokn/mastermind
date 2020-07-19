@@ -52,7 +52,8 @@ class Game
   def get_guess
     @guess = nil
     @guess = if @player_is_gm
-               @ai_player.get_ai_guess(@perfect_match, @color_match)
+               # need to do this or it doesn't work for some reason
+               @ai_player.get_ai_guess(@perfect_match, @color_match).join(',').split(',')
              else
                @human_player.get_human_guess.split
              end
