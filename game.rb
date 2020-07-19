@@ -23,7 +23,7 @@ class Game
 
   def determine_gm
     puts 'Do you want be the game master? (true/false)'
-    @player_is_gm = gets.chomp
+    @player_is_gm = gets.chomp.downcase
     @player_is_gm = @player_is_gm == 'true'
   end
 
